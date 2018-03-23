@@ -57,3 +57,9 @@ When you want to open a new window, you can write like:
 ```
 bind-key C-n run-shell "tmux new-window \"SSHH_INDEX=$(tmux display -p \"#{window_index},#{pane_index}\") zsh -l\"" \; send-keys ' sshh ${SSHH_INDEX}' ENTER
 ```
+
+Open a new same name window, and close window after ssh exit
+```
+bind-key C-n run-shell "tmux new-window \"SSHH_INDEX=$(tmux display -p \"#{window_index},#{pane_index}\") SSHH_NAME=$(tmux display -p \"#{window_name}\") zsh -l\"" \; send-keys 'sshh ${SSHH_INDEX}; [ $? -ne 5 ] && exit' ENTER
+```
+
